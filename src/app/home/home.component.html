@@ -1,0 +1,20 @@
+<header>
+  <h1 class="title">Tiny URL</h1>
+</header>
+<div class="container">
+  <div class="content-wrapper">
+    <mat-form-field appearance="outline">
+      <mat-label>Enter URL</mat-label>
+      <input matInput placeholder="URL" type="text" name="longUrl" (keyup)="validateInput($event)" [(ngModel)]="longUrl">
+    </mat-form-field>
+
+    <p *ngIf="!isUrlValid" class="error-message">URL not valid</p>
+    <button mat-button class="btn-submit" (click)="submit()">Convert</button>
+
+    <mat-form-field appearance="fill" *ngIf="shortUrl">
+      <mat-label>Result</mat-label>
+      <input matInput value="" type="text" name="shortURL" [(ngModel)]="shortUrl" disabled>
+    </mat-form-field>
+  </div>
+</div>
+
