@@ -6,7 +6,6 @@ import { Url } from '../models/url'
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type' : 'application/json'})
 };
-
 @Injectable({
   providedIn: 'root'
 })
@@ -14,6 +13,8 @@ export class urlService {
 
   private getCode = 'http://localhost:4000/url';
   private shorentUrl = 'http://localhost:4000/generate_url';
+  private getUrlsLink= 'http://localhost:4000/urls';
+
   private longUrlObject!: Object;
 
   constructor(private http: HttpClient) { }
@@ -21,6 +22,10 @@ export class urlService {
   getUrlCode(code: string) {
     const url = `${this.getCode + '/:'}${code}`;
     return this.http.get<Url>(url);
+  }
+
+  getUrls() {
+    return this.http.get<Url[]>(this.getUrlsLink);
   }
 
   createShortUrl(longUrl: string): Observable<Url> {
